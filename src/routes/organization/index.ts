@@ -1,8 +1,8 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction, Express } from 'express';
 
-export default (app: any) => {
-  app.get('/', (req: Request, res: Response, next: NextFunction) => {
-    res.send({
+export default (app: Express) => {
+  app.get('/', (req: Request, res: Response, next: NextFunction) : Response => {
+    return res.send({
       message: 'home of organzation'
     })
   })

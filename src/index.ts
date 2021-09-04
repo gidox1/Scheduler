@@ -1,8 +1,8 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response, Express } from 'express';
 import cors from 'cors';
 import routes from './routes';
 import constants from './config/constants';
-const app = express();
+const app:Express = express();
 
 //set up middlewares
 app.use(cors());

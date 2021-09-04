@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response, NextFunction, Express } from 'express';
 
-export default (app: any) => {
+export default (app: Express) => {
   app.get('/', (req: Request, res: Response, next: NextFunction) => {
     res.send({
       message: 'home of scheduler'

@@ -1,11 +1,25 @@
 import express, { Request, Response } from 'express';
+import cors from 'cors';
+import routes from './routes';
+import constants from './config/constants';
 const app = express();
-const port = process.env.PORT || 3020
 
-app.get('/', (req: Request, res: Response) : Response => {
-  return res.send({ message: 'hello'})
+//set up middlewares
+app.use(cors());
+const options: cors.CorsOptions = {
+  origin: constants.ALLOWED_ORIGINS
+};
+app.use(cors(options));
+app.use(express.json());
+
+//set up routes
+routes(app);
+
+//return generic message to catch unregistered routes
+app.get('*', (req: Request, res: Response) : Response => {
+  return res.send({
+    message: 'Scheduler Up and Running', status: 'success'
+  })
 })
 
-app.listen(port, () => {
-  console.log('server started on port', port)
-})
+export default app;

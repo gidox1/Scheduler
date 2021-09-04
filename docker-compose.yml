@@ -1,0 +1,29 @@
+version: '2'
+
+services:
+  scheduler:    
+    container_name: scheduler
+    image: scheduler
+    build: .
+    volumes:
+      - .:/src
+    networks:
+      - main_network
+
+  database:
+    container_name: scheduler_db
+    image: mysql:5.7
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_general_ci
+    ports:
+        - "3306"
+    environment:
+        MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+        MYSQL_USER: "scheduler_user"
+        MYSQL_PASSWORD: "scheduler_pass"
+        MYSQL_DATABASE: "schedulerDB"
+    networks:
+        - main_network
+
+networks:
+  main_network:
+    driver: bridge

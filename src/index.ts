@@ -9,6 +9,7 @@ app.use(cors());
 const options: cors.CorsOptions = {
   origin: constants.ALLOWED_ORIGINS
 };
+
 app.use(cors(options));
 app.use(express.json());
 
